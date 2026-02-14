@@ -1,0 +1,94 @@
+@model Mission06.Models.Movie
+@{
+    ViewData["Title"] = "Add Movie";
+}
+
+<div class="container">
+    <h1 class="mb-4">Add Movie to Collection</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <form asp-action="Add" method="post" class="needs-validation">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="CategoryId" class="form-label">Category</label>
+                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+                    <option value="">-- Select Category --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="Title" class="form-label">Title</label>
+                <input asp-for="Title" class="form-control" placeholder="Movie title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Year" class="form-label">Year</label>
+                <input asp-for="Year" type="number" class="form-control" min="1900" max="2100" placeholder="e.g. 1994" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="Director" class="form-label">Director</label>
+                <input asp-for="Director" class="form-control" placeholder="Director name(s)" />
+                <span asp-validation-for="Director" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Rating" class="form-label">Rating</label>
+                <select asp-for="Rating" class="form-select">
+                    <option value="">-- Select Rating --</option>
+                    <option value="G">G</option>
+                    <option value="PG">PG</option>
+                    <option value="PG-13">PG-13</option>
+                    <option value="R">R</option>
+                </select>
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="Edited" class="form-label">Edited</label>
+                <div class="form-check mt-2">
+                    <input asp-for="Edited" class="form-check-input" type="checkbox" />
+                    <label asp-for="Edited" class="form-check-label">Yes (edited version)</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="LentTo" class="form-label">Lent To</label>
+                <input asp-for="LentTo" class="form-control" placeholder="Optional" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="Notes" class="form-label">Notes (max 25 characters)</label>
+                <input asp-for="Notes" class="form-control" maxlength="25" placeholder="Optional" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Add Movie</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

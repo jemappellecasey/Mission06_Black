@@ -1,0 +1,28 @@
+# Build
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dll
+*.pdb
+*.log
+*.vspscc
+*.vssscc
+.vs/
+
+# SQLite database (optional - remove this line if you want to commit the DB)
+*.sqlite
+*.sqlite3
+
+# Rider / Visual Studio Code
+.idea/
+.vscode/
+*.rsuser
+
+# macOS
+.DS_Store
+
+# User secrets
+secrets.json
+appsettings.*.local.json
